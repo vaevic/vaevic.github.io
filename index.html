@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>iPadOS Dashboard | 시작 페이지</title>
+  <!-- Google Fonts & Pretendard -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- FontAwesome Icons for UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Dynamic Wallpaper Ambient Canvas -->
+  <div class="wallpaper-background">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="ambient-orb orb-4"></div>
+  </div>
+
+  <div class="ipad-container">
+    <!-- iPadOS Top Status Bar -->
+    <header class="status-bar">
+      <div class="status-left">
+        <span id="status-time" class="status-time">00:00</span>
+        <span id="status-date" class="status-date">9월 9일 화요일</span>
+      </div>
+      <div class="status-center">
+        <div class="dynamic-pill">
+          <span class="pill-dot"></span>
+          <span id="pill-text">기말시험 D-Day 카운트다운 진행 중</span>
+        </div>
+      </div>
+      <div class="status-right">
+        <span class="status-icon"><i class="fa-solid fa-wifi"></i></span>
+        <span class="status-icon"><i class="fa-brands fa-bluetooth-b"></i></span>
+        <div class="battery-wrapper">
+          <span class="battery-percent">100%</span>
+          <div class="battery-icon">
+            <div class="battery-level"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main iPad Canvas -->
+    <main class="main-content">
+      <!-- Spotlight Search Bar -->
+      <section class="spotlight-section">
+        <form id="search-form" class="spotlight-bar glass-panel" action="https://www.google.com/search" method="get" target="_blank">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" name="q" id="search-input" placeholder="Google 검색 또는 웹 주소 입력..." autocomplete="off">
+          <kbd class="search-kbd">Enter ↵</kbd>
+        </form>
+      </section>
+
+      <!-- Widget Grid -->
+      <div class="widget-grid">
+        
+        <!-- WIDGET 1: 실시간 시계 & 날짜 카드 -->
+        <div class="widget-card glass-panel clock-widget">
+          <div class="widget-header">
+            <div class="widget-badge">
+              <i class="fa-regular fa-clock"></i> 실시간 시계
+            </div>
+            <span class="time-zone-label">KST (UTC+9)</span>
+          </div>
+          <div class="clock-display">
+            <div class="digital-time">
+              <span id="clock-hours">00</span>
+              <span class="time-colon">:</span>
+              <span id="clock-minutes">00</span>
+              <span class="time-colon">:</span>
+              <span id="clock-seconds" class="seconds-highlight">00</span>
+            </div>
+            <div class="clock-meridiem-wrap">
+              <span id="clock-ampm">AM</span>
+            </div>
+          </div>
+          <div class="date-display">
+            <span id="full-date-korean">2026년 9월 9일 수요일</span>
+          </div>
+          <div class="clock-footer">
+            <div class="live-indicator">
+              <span class="pulse-dot"></span> 1초마다 실시간 동기화
+            </div>
+          </div>
+        </div>
+
+        <!-- WIDGET 2: 12월 2일 기말시험 D-Day 카운터 -->
+        <div class="widget-card glass-panel dday-widget">
+          <div class="widget-header">
+            <div class="widget-badge target-badge">
+              <i class="fa-solid fa-graduation-cap"></i> 학사일정
+            </div>
+            <span class="target-title">12월 2일 기말시험</span>
+          </div>
+          
+          <div class="dday-main-box">
+            <div class="dday-badge-large" id="dday-badge">D-DAY</div>
+            <div class="dday-quote" id="dday-status-message">목표를 향해 한 걸음씩 나아가세요!</div>
+          </div>
+
+          <!-- 남은 세부 시간 타임박스 (일, 시, 분, 초) -->
+          <div class="dday-timer-grid">
+            <div class="timer-box">
+              <span class="timer-num" id="days-count">00</span>
+              <span class="timer-unit">DAYS</span>
+            </div>
+            <div class="timer-sep">:</div>
+            <div class="timer-box">
+              <span class="timer-num" id="hours-count">00</span>
+              <span class="timer-unit">HOURS</span>
+            </div>
+            <div class="timer-sep">:</div>
+            <div class="timer-box">
+              <span class="timer-num" id="mins-count">00</span>
+              <span class="timer-unit">MINS</span>
+            </div>
+            <div class="timer-sep">:</div>
+            <div class="timer-box">
+              <span class="timer-num" id="secs-count">00</span>
+              <span class="timer-unit">SECS</span>
+            </div>
+          </div>
+
+          <div class="dday-progress-container">
+            <div class="progress-info">
+              <span>시험 준비 진행도</span>
+              <span id="dday-percent">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar" id="dday-progress-bar" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WIDGET 3: 유튜브 뮤직 플레이어 위젯 -->
+        <div class="widget-card glass-panel music-widget">
+          <div class="widget-header">
+            <div class="widget-badge music-badge">
+              <i class="fa-brands fa-youtube"></i> Apple Music & YouTube
+            </div>
+            <div class="equalizer-bars" id="music-equalizer">
+              <span class="eq-bar bar1"></span>
+              <span class="eq-bar bar2"></span>
+              <span class="eq-bar bar3"></span>
+              <span class="eq-bar bar4"></span>
+            </div>
+          </div>
+
+          <div class="music-player-container">
+            <!-- YouTube Embed Frame -->
+            <div class="youtube-frame-wrapper">
+              <iframe 
+                id="youtube-player"
+                src="https://www.youtube.com/embed/xKbEyIF_OrA?enablejsapi=1&rel=0&modestbranding=1" 
+                title="YouTube music player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            
+            <div class="music-meta-info">
+              <div class="track-info">
+                <span class="track-tag">집중을 돕는 공부 음악 · Lofi & Ambient</span>
+                <h3 class="track-title">집중 & 힐링 플레이리스트</h3>
+              </div>
+              <a href="https://youtu.be/xKbEyIF_OrA" target="_blank" class="yt-direct-btn" title="YouTube 원본에서 보기">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- WIDGET 4: 즐겨찾기 앱 그리드 위젯 -->
+        <div class="widget-card glass-panel favorites-widget">
+          <div class="widget-header">
+            <div class="widget-badge fav-badge">
+              <i class="fa-solid fa-compass"></i> 바로가기 즐겨찾기
+            </div>
+            <span class="fav-subtext">빠른 이동</span>
+          </div>
+
+          <div class="favorites-grid">
+            <!-- 1. 서울디지털대학교 -->
+            <a href="https://www.sdu.ac.kr" target="_blank" class="app-icon-item" title="서울디지털대학교 공식 메인">
+              <div class="app-icon squircle sdu-icon">
+                <!-- SDU 로고 심볼 -->
+                <span class="icon-letters">SDU</span>
+              </div>
+              <span class="app-label">서울디지털대</span>
+            </a>
+
+            <!-- 2. 네이버 -->
+            <a href="https://www.naver.com" target="_blank" class="app-icon-item" title="네이버">
+              <div class="app-icon squircle naver-icon">
+                <span class="icon-symbol">N</span>
+              </div>
+              <span class="app-label">네이버</span>
+            </a>
+
+            <!-- 3. 구글 -->
+            <a href="https://www.google.com" target="_blank" class="app-icon-item" title="구글">
+              <div class="app-icon squircle google-icon">
+                <i class="fa-brands fa-google"></i>
+              </div>
+              <span class="app-label">구글</span>
+            </a>
+
+            <!-- 4. 유튜브 -->
+            <a href="https://www.youtube.com" target="_blank" class="app-icon-item" title="유튜브">
+              <div class="app-icon squircle youtube-icon">
+                <i class="fa-brands fa-youtube"></i>
+              </div>
+              <span class="app-label">유튜브</span>
+            </a>
+
+            <!-- 5. 티스토리 -->
+            <a href="https://www.tistory.com" target="_blank" class="app-icon-item" title="티스토리">
+              <div class="app-icon squircle tistory-icon">
+                <span class="tistory-dots">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </span>
+              </div>
+              <span class="app-label">티스토리</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- iPadOS Floating Dock -->
+    <footer class="ipad-dock-container">
+      <div class="ipad-dock glass-panel">
+        <a href="https://www.sdu.ac.kr" target="_blank" class="dock-item" data-tooltip="서울디지털대학교">
+          <div class="dock-icon squircle sdu-icon">
+            <span class="icon-letters">SDU</span>
+          </div>
+        </a>
+        <a href="https://www.naver.com" target="_blank" class="dock-item" data-tooltip="네이버">
+          <div class="dock-icon squircle naver-icon">
+            <span class="icon-symbol">N</span>
+          </div>
+        </a>
+        <a href="https://www.google.com" target="_blank" class="dock-item" data-tooltip="구글">
+          <div class="dock-icon squircle google-icon">
+            <i class="fa-brands fa-google"></i>
+          </div>
+        </a>
+        <a href="https://www.youtube.com" target="_blank" class="dock-item" data-tooltip="유튜브">
+          <div class="dock-icon squircle youtube-icon">
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+        </a>
+        <a href="https://www.tistory.com" target="_blank" class="dock-item" data-tooltip="티스토리">
+          <div class="dock-icon squircle tistory-icon">
+            <span class="tistory-dots">
+              <i></i><i></i><i></i><i></i><i></i>
+            </span>
+          </div>
+        </a>
+        <div class="dock-divider"></div>
+        <button id="theme-toggle-btn" class="dock-item dock-btn" title="배경 테마 변경" aria-label="배경 테마 변경">
+          <div class="dock-icon squircle setting-icon">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
